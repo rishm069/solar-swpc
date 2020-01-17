@@ -5,8 +5,8 @@ import collections
 from openpyxl import Workbook 
 from openpyxl import load_workbook
 
-#directory = r'C:\Users\User\Desktop\handl\SRS'
-directory = r'C:\Users\User\Desktop\handl\TEST'
+#directory = '/root/SRS'
+directory = '/root/TEST'
 
 date = "20081231"
 date_1 = datetime.datetime.strptime(date, "%Y%m%d")
@@ -39,14 +39,14 @@ def default():
                     #break
             
                 print('- - - - - - - - - - - - - - - - - - - - - - -')
-                print('Имя файла: ' + str(filename))
-                print('Дата наблюдений: ' + end_date)
-                print('Полученные данные: ' + '\n')
+                print('File name: ' + str(filename))
+                print('Date: ' + end_date)
+                print('Data: ' + '\n')
             
                 #Default: results + empty data
             
                 if s.startswith("None"):
-                    print('Данные отсутствуют')
+                    print('Empty dataset')
                     print('\n')
                     break
             
