@@ -8,6 +8,8 @@ from openpyxl import load_workbook
 directory = '/home/rinat/SRS'
 #directory = '/home/rinat/TEST'
 
+#TESTSTEST
+
 date = "20081231"
 date_1 = datetime.datetime.strptime(date, "%Y%m%d")
 
