@@ -73,12 +73,9 @@ def default():
                 #print(nls)
 
 def sepdata():
-    #Here sepdata should create sample.xlsx file on it's own and write "Nmbr Location  Lo  Area  Z   LL   NN Mag Type" 
-    #into the first row
+    colnumber = 2
     wb = Workbook()
     wb.save('sample.xlsx')
-    colnumber = 2
-    
     date = "20081231"
     date_1 = datetime.datetime.strptime(date, "%Y%m%d")
     for filename in os.listdir(directory):
@@ -106,13 +103,8 @@ def sepdata():
 
                 print('Processing date: ' + end_date + '/2018-12-31')
 
-                #wb = load_workbook('sample.xlsx')
-                #ws = wb.active
-                #ws[colA] = end_date
-                #wb.save('sample.xlsx')
 
                 if s.startswith("None"):
-                    colnumber = colnumber + 1
                     break
                 nl = s[:sl]
                 nls = list(nl.split('\n'))
@@ -123,37 +115,22 @@ def sepdata():
                 
                 for value in nls:
                     res = value.split()
+
                     wb = load_workbook('sample.xlsx')
                     ws = wb.active
                     ws[colA] = end_date
-                    try:
-                        ws[colB] = int(res[0])
-                    except:
-                        ws[colB] = ' '
-                    try:
-                        ws[colC] = res[1]
-                    except:
-                        ws[colC] = ' '
-                    try:
-                        ws[colD] = int(res[2])
-                    except:
-                        ws[colD] = ' '
-                    try:
-                        ws[colE] = int(res[3])
-                    except:
-                        ws[colE] = ' '
-                    try:
-                        ws[colF] = res[4]
-                    except:
-                        ws[colF] = ' '
-                    try:
-                        ws[colG] = int(res[5])                 
-                    except:
-                        ws[colG] = ' '
-                    try:
-                        ws[colH] = int(res[6])
-                    except:
-                        ws[colH] = ' '
+                    wb.save('sample.xlsx')
+
+                    wb = load_workbook('sample.xlsx')
+                    ws = wb.active
+                   
+                    ws[colB] = int(res[0])
+                    ws[colC] = res[1]
+                    ws[colD] = int(res[2])
+                    ws[colE] = int(res[3])
+                    ws[colF] = res[4]
+                    ws[colG] = int(res[5])                 
+                    ws[colH] = int(res[6])
                     try:
                         ws[colI] = res[7]
                     except:
@@ -169,8 +146,7 @@ def sepdata():
                     colF = "F" + str(colnumber)
                     colG = "G" + str(colnumber)
                     colH = "H" + str(colnumber)
-                    colI = "I" + str(colnumber)
-                  
+                    colI = "I" + str(colnumber)             
 
                 
 sepdata()  
