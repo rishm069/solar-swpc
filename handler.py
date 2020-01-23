@@ -5,8 +5,8 @@ import collections
 from openpyxl import Workbook 
 from openpyxl import load_workbook
 
-#directory = '/root/SRS'
-directory = '/root/TEST'
+directory = '/home/rinat/SRS'
+#directory = '/home/rinat/TEST'
 
 date = "20081231"
 date_1 = datetime.datetime.strptime(date, "%Y%m%d")
@@ -100,25 +100,12 @@ def sepdata():
 
                 print('Processing date: ' + end_date + '/2018-12-31')
 
-                wb = load_workbook('sample.xlsx')
-                ws = wb.active
-                ws[colA] = end_date
-                wb.save('sample.xlsx')
+                #wb = load_workbook('sample.xlsx')
+                #ws = wb.active
+                #ws[colA] = end_date
+                #wb.save('sample.xlsx')
 
                 if s.startswith("None"):
-                    wb = load_workbook('sample.xlsx')
-                    ws = wb.active
-                    
-                    ws[colB] = 0
-                    ws[colC] = 0
-                    ws[colD] = 0
-                    ws[colE] = 0
-                    ws[colF] = 0
-                    ws[colG] = 0
-                    ws[colH] = 0
-                    ws[colI] = 0
-        
-                    wb.save('sample.xlsx')
                     colnumber = colnumber + 1
                     break
                 nl = s[:sl]
@@ -132,14 +119,35 @@ def sepdata():
                     res = value.split()
                     wb = load_workbook('sample.xlsx')
                     ws = wb.active
-                   
-                    ws[colB] = int(res[0])
-                    ws[colC] = res[1]
-                    ws[colD] = int(res[2])
-                    ws[colE] = int(res[3])
-                    ws[colF] = res[4]
-                    ws[colG] = int(res[5])                 
-                    ws[colH] = int(res[6])
+                    ws[colA] = end_date
+                    try:
+                        ws[colB] = int(res[0])
+                    except:
+                        ws[colB] = ' '
+                    try:
+                        ws[colC] = res[1]
+                    except:
+                        ws[colC] = ' '
+                    try:
+                        ws[colD] = int(res[2])
+                    except:
+                        ws[colD] = ' '
+                    try:
+                        ws[colE] = int(res[3])
+                    except:
+                        ws[colE] = ' '
+                    try:
+                        ws[colF] = res[4]
+                    except:
+                        ws[colF] = ' '
+                    try:
+                        ws[colG] = int(res[5])                 
+                    except:
+                        ws[colG] = ' '
+                    try:
+                        ws[colH] = int(res[6])
+                    except:
+                        ws[colH] = ' '
                     try:
                         ws[colI] = res[7]
                     except:
@@ -233,7 +241,7 @@ def nmbr():
         print(nmbrd)
         
                 
-nmbr()  
+sepdata()  
 
 
 
