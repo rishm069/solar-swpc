@@ -5,10 +5,10 @@ import collections
 from openpyxl import Workbook 
 from openpyxl import load_workbook
 
-directory = '/home/rinat/SRS'
-#directory = '/home/rinat/TEST'
+#directory = '/home/rinat/SRS'
+directory = '/home/rinat/TEST'
 
-#TT
+
 
 date = "20081231"
 date_1 = datetime.datetime.strptime(date, "%Y%m%d")
@@ -73,6 +73,10 @@ def default():
                 #print(nls)
 
 def sepdata():
+    #Here sepdata should create sample.xlsx file on it's own and write "Nmbr Location  Lo  Area  Z   LL   NN Mag Type" 
+    #into the first row
+    wb = Workbook()
+    wb.save('sample.xlsx')
     colnumber = 2
     
     date = "20081231"
@@ -167,81 +171,7 @@ def sepdata():
                     colH = "H" + str(colnumber)
                     colI = "I" + str(colnumber)
                   
-def nmbr():
-    #colnumber = 2
-    nmbrl = list()
-    nmbrd = dict()
 
-    date = "20081231"
-
-    date_1 = datetime.datetime.strptime(date, "%Y%m%d")
-    for filename in os.listdir(directory):
-        fh = open(filename).read().splitlines()
-        for i, line in enumerate(fh): 
-            if "Nmbr Location  Lo  Area  Z   LL   NN Mag Type" in line:
-            
-                sh = fh[i+1:i+40]
-                s = "\n".join(sh)
-                sl = s.rfind('IA.')
-                
-                date_1 = date_1 + datetime.timedelta(days=1)
-                end_date = date_1.strftime('%Y-%m-%d')
-
-                #colA = "A" + str(colnumber)
-                #colB = "B" + str(colnumber)
-                #colC = "C" + str(colnumber)
-                #colD = "D" + str(colnumber)
-                #colE = "E" + str(colnumber)
-                #colF = "F" + str(colnumber)
-                #colG = "G" + str(colnumber)
-                #colH = "H" + str(colnumber)
-                #colI = "I" + str(colnumber)
-                
-
-                #print('Processing date: ' + end_date + '/2018-12-31')
-
-                #wb = load_workbook('sample_nmbr.xlsx')
-                #ws = wb.active
-                #ws[colA] = end_date
-                #wb.save('sample_nmbr.xlsx')
-
-                if s.startswith("None"):
-                    break
-                nl = s[:sl]
-                nls = list(nl.split('\n'))
-                nls.pop()
-                
-                # for loop belov extracts values from table to a list 
-                # may be used to write it into a dictionary along with 'line'
-                
-                
-                
-                for value in nls:
-                    res = value.split()
-                    #wb = load_workbook('sample_nmbr.xlsx')
-                    #ws = wb.active
-                   
-
-                    nmbrn = int(res[0])
-                    nvalue = int(res[3])
-                    
-                    nmbrl.append(nmbrn)
-                    
-                    if nmbrn not in nmbrd:
-                        nmbrd.update({nmbrn:nvalue})
-                    else:
-                        for k, v in nmbrd.items():
-                            if k == nmbrn:
-                                if v < nvalue:
-                                    nmbrd.update({nmbrn:nvalue})
-                    
-                    #nmbrd.update({nmbrn:nvalue})
-
-        nmbrl.sort()
-        counter=collections.Counter(nmbrl)
-        print(counter)
-        print(nmbrd)
-        
                 
 sepdata()  
 
