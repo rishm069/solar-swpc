@@ -5,14 +5,22 @@ import collections
 from openpyxl import Workbook 
 from openpyxl import load_workbook
 
+#Directories here are set for sourse data
+
+#For Linux:
 #directory = '/home/rinat/SRS'
 directory = '/home/rinat/TEST'
 
+#For Windows:
+#directory = r'C:\Users\User\Desktop\handl\SRS'
+#directory = r'C:\Users\User\Desktop\handl\TEST'
 
-
+#Date should be un-hardcoded here
 date = "20081231"
 date_1 = datetime.datetime.strptime(date, "%Y%m%d")
 
+
+# default() prints results in the console and can save them in .txt (might be useful for grep)
 def default():
     print('stuff')
     date = "20081231"
@@ -72,10 +80,12 @@ def default():
 
                 #print(nls)
 
+# sepdata() creates data.xlsx file and writes data in. In doesn't create headers
 def sepdata():
     colnumber = 2
     wb = Workbook()
-    wb.save('sample.xlsx')
+    wb.save('data.xlsx')
+    #Date should be un-hardcoded here
     date = "20081231"
     date_1 = datetime.datetime.strptime(date, "%Y%m%d")
     for filename in os.listdir(directory):
@@ -100,9 +110,8 @@ def sepdata():
                 colH = "H" + str(colnumber)
                 colI = "I" + str(colnumber)
                 
-
+                #Date should be un-hardcoded here
                 print('Processing date: ' + end_date + '/2018-12-31')
-
 
                 if s.startswith("None"):
                     break
@@ -110,18 +119,16 @@ def sepdata():
                 nls = list(nl.split('\n'))
                 nls.pop()
                 
-                # for loop belov extracts values from table to a list 
-                # may be used to write it into a dictionary along with 'line'
-                
+                #For some reason this loop (it is actually the main thing here) doesn't work in Linux environment
                 for value in nls:
                     res = value.split()
 
-                    wb = load_workbook('sample.xlsx')
+                    wb = load_workbook('data.xlsx')
                     ws = wb.active
                     ws[colA] = end_date
-                    wb.save('sample.xlsx')
+                    wb.save('data.xlsx')
 
-                    wb = load_workbook('sample.xlsx')
+                    wb = load_workbook('data.xlsx')
                     ws = wb.active
                    
                     ws[colB] = int(res[0])
@@ -130,13 +137,16 @@ def sepdata():
                     ws[colE] = int(res[3])
                     ws[colF] = res[4]
                     ws[colG] = int(res[5])                 
-                    ws[colH] = int(res[6])
+                    try:
+                        ws[colH] = int(res[6])
+                    except:
+                        ws[colH] = res[6]
                     try:
                         ws[colI] = res[7]
                     except:
                         ws[colI] = ' '
 
-                    wb.save('sample.xlsx')
+                    wb.save('data.xlsx')
                     colnumber = colnumber + 1
                     colA = "A" + str(colnumber)
                     colB = "B" + str(colnumber)
@@ -147,48 +157,8 @@ def sepdata():
                     colG = "G" + str(colnumber)
                     colH = "H" + str(colnumber)
                     colI = "I" + str(colnumber)             
-
-                
-sepdata()  
-
-
-
-
-
-#nmbrd, counter = nmbr()        
-
-#print(counter)
-#print(nmbrd)
-
-
-
-#colB = "B2" 
-        #colC = "C2" 
-        #colD = "D2" 
-        #colE = "E2" 
-        #colA = "A2" 
-        #colF = "F2" 
-        #colG = "G2" 
-        #colH = "H2" 
-        #colI = "I2" 
-
-        
-        #wb = load_workbook('new_sample.xlsx')
-        #ws = wb.active
-
-        #for k, v in counter:
-            #ws[colB] = k
-            #ws[colC] = v
-        #for q, w in nmbrd:
-            #ws[colF] = q
-            #ws[colG] = w
-
-
-
-        #wb.save('new_sample.xlsx')
-
-
-
+              
+sepdata() 
 
 
 
