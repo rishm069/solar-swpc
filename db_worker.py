@@ -40,7 +40,7 @@ try:
             index = index + 1
             print(index)
 
-        print("The biggest area was reached on: " + bigdate + " with area size: " + str(bigarea) + " The number: " + bignmbr + " has reached the biggest area within " + str(bigday) + " days.")
+        print("The biggest area was reached on: " + str(bigdate) + " with area size: " + str(bigarea) + " The number: " + str(bignmbr) + " has reached the biggest area within " + str(bigday) + " days.")
         nmbr = nmbr + 1
 
 except Error as e:
