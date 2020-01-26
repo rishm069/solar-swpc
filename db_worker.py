@@ -31,6 +31,7 @@ try:
             print("Date = " + str(row[0]))
             print("Nmbr = " + str(row[1]))
             print("Area  = " + str(row[4]) + "\n")
+            bigdate = str(row[0])
             if row[4] > bigarea:
                 bigarea = row[4]
                 bigdate = str(row[0])
