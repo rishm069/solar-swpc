@@ -41,6 +41,14 @@ try:
             print(index)
 
         print("The biggest area was reached on: " + str(bigdate) + " with area size: " + str(bigarea) + " The number: " + str(bignmbr) + " has reached the biggest area within " + str(bigday) + " days.")
+
+        mySql_insert_query = """INSERT INTO `solar_result` (`Nmbr`, `Days lasted`, `Max Area`, `Days till Max Area`, `Date on the Max Area`)
+                                VALUES (%s, %s, %s, %s, %s) """
+
+        recordTuple = (str(bignmbr), str(cursor.rowcount), str(bigarea), str(bigday), str(bigdate))
+        cursor.execute(mySql_insert_query, recordTuple)
+        connection.commit()
+        
         nmbr = nmbr + 1
 
 except Error as e:
