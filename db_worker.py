@@ -11,6 +11,7 @@ from progress.bar import Bar
 #(`Nmbr` int,`Days lasted` varchar(100) DEFAULT NULL,
 #`Max Area` int DEFAULT NULL,`Days till Max Area` varchar(100) DEFAULT NULL,
 #`Date on the Max Area` varchar(100) DEFAULT NULL);
+# alter table solar_result ADD COLUMN Velocity INT(11) AFTER `Date on the Max Area`;
 
 
 try:
@@ -45,10 +46,11 @@ try:
                     bigdays = index + 1
                 index = index + 1
 
-            mySql_insert_query = """INSERT INTO `solar_result` (`Nmbr`, `Days lasted`, `Max Area`, `Days till Max Area`, `Date on the Max Area`)
-                                    VALUES (%s, %s, %s, %s, %s) """
+            vlst = int(bigarea) / int(bigdays)
+            mySql_insert_query = """INSERT INTO `solar_result` (`Nmbr`, `Days lasted`, `Max Area`, `Days till Max Area`, `Date on the Max Area`, `Velocity`)
+                                    VALUES (%s, %s, %s, %s, %s, %s) """
 
-            recordTuple = (str(bignmbr), str(index), str(bigarea), str(bigdays), str(bigdate))
+            recordTuple = (str(bignmbr), str(index), str(bigarea), str(bigdays), str(bigdate), str(vlst))
             cursor.execute(mySql_insert_query, recordTuple)
             connection.commit()
 
