@@ -46,7 +46,10 @@ try:
                     bigdays = index + 1
                 index = index + 1
 
-            vlst = int(bigarea) / int(bigdays)
+            try:
+                vlst = int(bigarea) / int(bigdays)
+            except:
+                vlst = 0
             mySql_insert_query = """INSERT INTO `solar_result` (`Nmbr`, `Days lasted`, `Max Area`, `Days till Max Area`, `Date on the Max Area`, `Velocity`)
                                     VALUES (%s, %s, %s, %s, %s, %s) """
 
