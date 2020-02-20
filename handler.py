@@ -4,6 +4,19 @@ import sys
 import collections
 import mysql.connector
 
+
+#CREATE TABLE `solar_test` (
+#  `Date` varchar(100) DEFAULT NULL,
+#  `Nmbr` int(11) DEFAULT NULL,
+#  `Location` varchar(100) DEFAULT NULL,
+#  `Lo` int(11) DEFAULT NULL,
+#  `Area` int(11) DEFAULT NULL,
+#  `Z` varchar(100) DEFAULT NULL,
+#  `LL` int(11) DEFAULT NULL,
+#  `NN` int(11) DEFAULT NULL,
+#  `Mag_Type` varchar(100) DEFAULT NULL
+#) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 directory = '/home/rinat/SRS/'
 
 def handler():
